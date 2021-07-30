@@ -21,6 +21,9 @@ export default {
     getOauthCode() {
         let code = null;
         // perform GET to OAUTH_CODE_URL
+        // check that returned state matches STATE
+        // set code to temporary code returned from request
+
         return code;
     },
     // async getOauthToken () {
