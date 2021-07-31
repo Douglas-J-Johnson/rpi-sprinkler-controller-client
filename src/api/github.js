@@ -2,11 +2,13 @@ import qs from 'qs';
 
 const BASE_URL = 'https://github.com/login/oauth/'
 const CLIENT_ID = '4a8495585bb1c3214624';
+const CODE_REDIRECT_URI = 'http://localhost:8080/oauth/code'
 const STATE = 'secret-sauce';
 // const CLIENT_SECRET = null; // only required for token request
 
 const OAUTH_CODE_QUERY_PARAMS = {
     client_id: CLIENT_ID,
+    redirect_uri: CODE_REDIRECT_URI,
     state: STATE
 }
 const OAUTH_CODE_URL = `${BASE_URL}/authorize?${qs.stringify(OAUTH_CODE_QUERY_PARAMS)}`;
