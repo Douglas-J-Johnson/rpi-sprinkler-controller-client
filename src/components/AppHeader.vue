@@ -1,12 +1,18 @@
 <template>
     <div id="app-header">
         <h2>Header</h2>
+        <button @click="login">Login</button>
     </div>
 </template>
 
-<script lang="ts">
+<script>
+import { mapActions } from 'vuex';
+
 export default {
-    name: 'AppHeader'
+    name: 'AppHeader',
+    methods: {
+        ...mapActions(['login', 'logout']),
+    }
 };
 </script>
 

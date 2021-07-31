@@ -1,3 +1,5 @@
+import githubAPI from '../../api/github';
+
 const state = {
     code: null,
     // token: null
@@ -14,7 +16,13 @@ const mutations = {
 };
 
 const actions = {
-    logout: ({ commit }) => { commit('setToken', null); }
+    login: () => {
+        githubAPI.getOauthCode();
+     },
+    logout: ({ commit }) => {
+        console.log('logout');
+        commit('setToken', null);
+    }
 };
 
 export default { state, getters, mutations, actions }
