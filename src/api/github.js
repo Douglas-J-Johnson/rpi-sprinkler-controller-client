@@ -3,6 +3,7 @@ import qs from 'qs';
 const BASE_URL = 'https://github.com/login/oauth/'
 const CLIENT_ID = '4a8495585bb1c3214624';
 const CODE_REDIRECT_URI = 'http://localhost:8080/oauth/callback/access-code'
+const TOKEN_REDIRECT_URI = 'http://localhost:8080/oauth/callback/token'
 const STATE = 'secret-sauce';
 // const CLIENT_SECRET = null; // only required for token request
 
