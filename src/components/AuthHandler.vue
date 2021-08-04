@@ -6,6 +6,7 @@
 
 <script>
 import qs from 'qs';
+import config from '../config';
 
 export default {
     name: 'AuthHandler',
@@ -19,7 +20,7 @@ export default {
                 console.log('OAuth Error', QUERY_PARAMS.error_description);
             }
             else if (Object.prototype.hasOwnProperty.call(QUERY_PARAMS, 'code')) {
-                if (Object.prototype.hasOwnProperty.call(QUERY_PARAMS, 'state') && QUERY_PARAMS.state == 'secret-sauce') {
+                if (Object.prototype.hasOwnProperty.call(QUERY_PARAMS, 'state') && QUERY_PARAMS.state === config.github.accessCodeState) {
                     console.log(QUERY_PARAMS.code);
                     return "OAuth Login Successful";
                 }

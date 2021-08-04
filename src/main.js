@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import App from './App.vue'
 import store from './store';
 
+import config from './config';
+
 import AuthHandler from './components/AuthHandler.vue'
 
 Vue.use(VueRouter);
@@ -10,7 +12,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    { path: '/oauth/callback/access-code', component: AuthHandler }
+    { path: config.github.accessCodeCallback, component: AuthHandler }
   ]
 });
 
