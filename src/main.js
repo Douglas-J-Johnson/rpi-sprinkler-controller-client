@@ -9,7 +9,7 @@ import AuthHandler from './components/AuthHandler.vue'
 
 Vue.use(VueRouter);
 
-const router = new VueRouter({
+export const router = new VueRouter({
   mode: 'history',
   routes: [
     { path: config.github.accessCodeCallback, component: AuthHandler }

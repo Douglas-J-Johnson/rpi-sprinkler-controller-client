@@ -1,3 +1,4 @@
+import { router } from '../../main'
 import githubAPI from '../../api/github';
 
 const CODE_KEY_NAME = 'github_code';
@@ -24,6 +25,8 @@ const actions = {
     finalizeLogin: ({ commit }, code) => {
         commit('setCode', code);
         window.localStorage.setItem(CODE_KEY_NAME, code);
+
+        router.push('/')
     },
     logout: ({ commit }) => {
         commit('setCode', null);
