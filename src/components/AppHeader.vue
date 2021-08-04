@@ -1,17 +1,18 @@
 <template>
     <div id="app-header">
         <h2>Header</h2>
-        <button @click="login">Login</button>
-        <button @click="logout">Logout</button>
+        <button v-if="isLoggedIn()" @click="logout">Logout</button>
+        <button v-else @click="login">Login</button>
     </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
     name: 'AppHeader',
     methods: {
+        ...mapGetters(['isLoggedIn']),
         ...mapActions(['login', 'logout']),
     }
 };
