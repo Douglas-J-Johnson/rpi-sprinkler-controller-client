@@ -11,9 +11,10 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
     name: 'AppHeader',
-    computed: { },
-    methods: {
+    computed: { 
         ...mapGetters(['isLoggedIn']),
+    },
+    methods: {
         ...mapActions(['login', 'logout'])
     }
 };
