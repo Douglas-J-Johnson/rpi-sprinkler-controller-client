@@ -26,7 +26,7 @@ const actions = {
         commit('setCode', code);
         window.localStorage.setItem(CODE_KEY_NAME, code);
 
-        router.push('/')
+        router.push('/');
     },
     logout: ({ commit }) => {
         commit('setCode', null);
