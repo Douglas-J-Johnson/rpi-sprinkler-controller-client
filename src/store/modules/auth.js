@@ -1,7 +1,9 @@
 import githubAPI from '../../api/github';
 
+const CODE_KEY_NAME = 'github_code';
+
 const state = {
-    code: null,
+    code: window.localStorage.getItem(CODE_KEY_NAME),
     // token: null
 };
 
@@ -21,10 +23,11 @@ const actions = {
     },
     finalizeLogin: ({ commit }, code) => {
         commit('setCode', code);
+        window.localStorage.setItem(CODE_KEY_NAME, code);
     },
     logout: ({ commit }) => {
-        console.log('logout');
         commit('setCode', null);
+        window.localStorage.removeItem(CODE_KEY_NAME);
     }
 };
 
