@@ -7,10 +7,12 @@
 <script>
 import qs from 'qs';
 import config from '../config';
+import { mapActions } from 'vuex';
 
 export default {
     name: 'AuthHandler',
     methods: {
+        ...mapActions(['finalizeLogin']),
         search() {
             // currently, when a user rejects permission application is redirected to 'Authorization callback URL' specified in the Github oauth app
 
@@ -21,7 +23,7 @@ export default {
             }
             else if (Object.prototype.hasOwnProperty.call(QUERY_PARAMS, 'code')) {
                 if (Object.prototype.hasOwnProperty.call(QUERY_PARAMS, 'state') && QUERY_PARAMS.state === config.github.accessCodeState) {
-                    console.log(QUERY_PARAMS.code);
+                    this.finalizeLogin(QUERY_PARAMS.code);
                     return "OAuth Login Successful";
                 }
             }

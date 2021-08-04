@@ -2,6 +2,7 @@
     <div id="app-header">
         <h2>Header</h2>
         <button @click="login">Login</button>
+        <button @click="logout">Logout</button>
     </div>
 </template>
 

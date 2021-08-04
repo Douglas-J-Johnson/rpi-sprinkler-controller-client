@@ -18,11 +18,14 @@ const mutations = {
 const actions = {
     login: () => {
         githubAPI.getOauthCode();
-     },
+    },
+    finalizeLogin: ({ commit }, code) => {
+        commit('setCode', code);
+    },
     logout: ({ commit }) => {
         console.log('logout');
-        commit('setToken', null);
+        commit('setCode', null);
     }
 };
 
-export default { state, getters, mutations, actions }
+export default { state, getters, mutations, actions };
