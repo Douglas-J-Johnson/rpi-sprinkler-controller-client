@@ -1,8 +1,20 @@
 <template>
     <div id="app-header">
-        <h2>Header</h2>
-        <button v-if="isLoggedIn" @click="logout">Logout</button>
-        <button v-else @click="login">Login</button>
+        <div class="ui menu">
+            <router-link to="/" class="item">
+                Home
+            </router-link>
+            <div class="right menu">
+                <div class="item">
+                    <button class="ui primary button" v-if="!isLoggedIn" @click="login">
+                        Login
+                    </button>
+                    <button class="ui primary button" v-else @click="logout">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -21,7 +33,5 @@ export default {
 </script>
 
 <style scoped>
-    #app-header {
-        color: blue;
-    }
+    #app-header { }
 </style>
