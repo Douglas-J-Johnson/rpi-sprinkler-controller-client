@@ -1,7 +1,5 @@
 <template>
-    <div id="app-footer">
-        <h3>Footer</h3>
-    </div>
+    <div id="app-footer"></div>
 </template>
 
 <script>
@@ -11,7 +9,5 @@ export default {
 </script>
 
 <style scoped>
-    #app-footer {
-        color: blue;
-    }
+    #app-footer { }
 </style>
