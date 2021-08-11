@@ -5,6 +5,7 @@ import store from './store';
 
 import config from './config';
 
+import Home from './components/Home.vue'
 import AuthHandler from './components/AuthHandler.vue'
 import AuthDefault from './components/AuthDefault.vue'
 
@@ -13,6 +14,7 @@ Vue.use(VueRouter);
 export const router = new VueRouter({
   mode: 'history',
   routes: [
+    { path: '/', component: Home },
     { path: config.github.accessCodeCallback, component: AuthHandler },
     { path: config.github.defaultCallback, component: AuthDefault }
   ]
