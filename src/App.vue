@@ -20,8 +20,5 @@ export default {
 </script>
 
 <style>
-#app {
-  text-align: center;
-  color: turquoise;
-}
+  #app { }
 </style>

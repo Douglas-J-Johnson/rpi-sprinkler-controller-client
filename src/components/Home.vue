@@ -1,7 +1,11 @@
 <template>
     <div id="home">
-        <div v-if="!isLoggedIn">Please Log in</div>
-        <div v-else>You are logged in!</div>
+        <div v-if="!isLoggedIn">
+            <h3>Please Log in</h3>
+        </div>
+        <div v-else>
+            <h3>You are logged in!</h3>
+        </div>
     </div>
 </template>
 
@@ -17,5 +21,7 @@ export default {
 </script>
 
 <style scoped>
-    #home { }
+    #home {
+        padding: 1rem;
+    }
 </style>
