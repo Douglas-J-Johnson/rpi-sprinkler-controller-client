@@ -9,6 +9,7 @@ const state = {
 const getters = {
     allDevices: (state) => { return state.devices; },
     deviceByID: (state, id) => {
+        console.log(id);
         // if found {
         //  return device object
         //} else
@@ -19,16 +20,19 @@ const getters = {
 
 const mutations = {
     addDevice: (state, device) => {
+        console.log(device);
         // check to see if device is in devices
         // if already in list, warn
         // else add device to list
     },
     updateDevice: (state, id) => {
+        console.log(id);
         // check to see if device is in devices
         // if already in list, update
         // else error
     },
     removeDevice: (state, id) => {
+        console.log(id);
         // check to see if device is in devices
         // if already in list, delete
         // else info message
