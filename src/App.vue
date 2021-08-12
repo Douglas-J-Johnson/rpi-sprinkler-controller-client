@@ -21,4 +21,8 @@ export default {
 
 <style>
   #app { }
+
+  .page {
+    margin: 1.25rem;
+  }
 </style>

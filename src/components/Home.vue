@@ -1,5 +1,5 @@
 <template>
-    <div id="home">
+    <div id="home" class="page">
         <div v-if="!isLoggedIn">
             <h3>Please Log in</h3>
         </div>
@@ -21,7 +21,5 @@ export default {
 </script>
 
 <style scoped>
-    #home {
-        padding: 1rem;
-    }
+    #home { }
 </style>

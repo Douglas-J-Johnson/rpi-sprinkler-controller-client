@@ -1,9 +1,9 @@
 <template>
     <div id="app-header">
         <div class="ui menu">
-            <router-link to="/" class="item">
-                Home
-            </router-link>
+            <router-link to="/" class="item">Home</router-link>
+            <router-link to="/devices" class="item">Devices</router-link>
+            <router-link to="/schedules" class="item">Schedules</router-link>
             <div class="right menu">
                 <div class="item">
                     <button class="ui primary button" v-if="!isLoggedIn" @click="login">
