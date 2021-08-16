@@ -24,7 +24,7 @@ export const router = new VueRouter({
   ]
 });
 
-export const app = new Vue({
+new Vue({
   router,
   store,
   render: h => h(App),

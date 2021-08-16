@@ -24,28 +24,23 @@ const getters = {
 };
 
 const mutations = {
-    addDeviceToState: (state, device) => {
+    addDevice: (state, device) => {
         console.log('Add', device);
         // check to see if device is in devices
         // if already in list, warn
         // else add device to list
     },
-    updateDeviceInState: (state, id) => {
+    updateDevice: (state, id) => {
         console.log('Update', id);
         // check to see if device is in devices
         // if already in list, update
         // else error
     },
-    removeDeviceFromState: (state, id) => {
-        state.devices = state.devices.filter(device => device.id !== id);
+    removeDevice: (state, id) => {
+        state.devices = state.devices.filter(device => device.id !== id)
     }
 };
 
-const actions = {
-    removeDevice: ({ commit }, id) => {
-        console.log('REMOVE', id);
-        commit('removeDeviceFromState', id);
-    }
-};
+const actions = { };
 
 export default { state, getters, mutations, actions };
