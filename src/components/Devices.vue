@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div id="remove-confirmation-modal" class="ui active mini modal">
+        <div id="remove-confirmation-modal" class="ui mini modal">
             <div class="ui header">
                 Remove Device?
             </div>
@@ -52,7 +52,7 @@ export default {
         setRemoveDeviceID: function (value) { $(REMOVE_MODAL_ID).attr(REMOVE_ID_ATTR, value); },
         onInitiateDeviceRemoval: function (id) {
             this.setRemoveDeviceID(id);
-            // $('#remove-confirmation-modal').modal('show');
+            $('#remove-confirmation-modal').modal('show');
         },
         onConfirmRemoval: function () {
             this.removeDevice(this.removeDeviceID());
