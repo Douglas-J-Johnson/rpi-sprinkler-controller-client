@@ -1,13 +1,13 @@
 const state = {
     devices: [
-        {id: 1, name: 'Front Pump', type: 'switch'},
-        {id: 2, name: 'Back Pump', type: 'switch'},
-        {id: 3, name: 'Zone 1', type: 'switch'},
-        {id: 4, name: 'Zone 2', type: 'switch'},
-        {id: 5, name: 'Zone 3', type: 'switch'},
-        {id: 6, name: 'Zone 4', type: 'switch'},
-        {id: 7, name: 'Zone 5', type: 'switch'},
-        {id: 8, name: 'Zone 6', type: 'switch'},
+        {id: 'CH1', status: 1, name: 'Front Pump', type: 'pump'},
+        {id: 'CH2', status: 1, name: 'Back Pump', type: 'pump'},
+        {id: 'CH3', status: 1, name: 'Zone 1', type: 'valve'},
+        {id: 'CH4', status: 1, name: 'Zone 2', type: 'valve'},
+        {id: 'CH5', status: 1, name: 'Zone 3', type: 'valve'},
+        {id: 'CH6', status: 1, name: 'Zone 4', type: 'valve'},
+        {id: 'CH7', status: 1, name: 'Zone 5', type: 'valve'},
+        {id: 'CH8', status: 1, name: 'Zone 6', type: 'valve'},
     ] 
 };
 

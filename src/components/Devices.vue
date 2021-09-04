@@ -3,14 +3,14 @@
     <h3>Devices</h3>
         <div class="ui middle aligned divided list">
             <div v-for="device in allDevices" :key="device.id" class="item">
-                <div class="content">
-                    <a class="header">{{ device.name }}</a>
-                    <div class="description">{{ device.type }}</div>
-                </div>
                 <div class="right floated content">
                     <button
                         class="ui mini negative button"
                         @click="onInitiateDeviceRemoval(device.id)">Remove</button>
+                </div>
+                <div class="content">
+                    <a class="header">{{ `${device.name} (${device.id})` }}</a>
+                    <div class="description">{{ device.type }}</div>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         ...mapActions(['removeDevice']),
-        removeDeviceID: function () { return parseInt($(REMOVE_MODAL_ID).attr(REMOVE_ID_ATTR)); },
+        removeDeviceID: function () { return $(REMOVE_MODAL_ID).attr(REMOVE_ID_ATTR); },
         setRemoveDeviceID: function (value) { $(REMOVE_MODAL_ID).attr(REMOVE_ID_ATTR, value); },
         onInitiateDeviceRemoval: function (id) {
             this.setRemoveDeviceID(id);
