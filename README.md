@@ -1,4 +1,4 @@
-# sonoff-controller
+# RPi Sprinkler Controller Client
 
 ## Project setup
 ```
