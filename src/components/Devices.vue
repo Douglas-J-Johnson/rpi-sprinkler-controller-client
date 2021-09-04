@@ -40,7 +40,6 @@ import $ from 'jquery';
 const REMOVE_MODAL_ID = '#remove-confirmation-modal';
 const REMOVE_ID_ATTR = 'data-device-id';
 
-
 export default {
     name: 'Devices',
     computed: {
@@ -52,7 +51,7 @@ export default {
         setRemoveDeviceID: function (value) { $(REMOVE_MODAL_ID).attr(REMOVE_ID_ATTR, value); },
         onInitiateDeviceRemoval: function (id) {
             this.setRemoveDeviceID(id);
-            $('#remove-confirmation-modal').modal('show');
+            window.$('#remove-confirmation-modal').modal('show');
         },
         onConfirmRemoval: function () {
             this.removeDevice(this.removeDeviceID());
