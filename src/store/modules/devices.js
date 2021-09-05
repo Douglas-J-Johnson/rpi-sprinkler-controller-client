@@ -24,11 +24,11 @@ const getters = {
 };
 
 const mutations = {
-    addDeviceToState: (state, device) => {
-        console.log('Add', device);
+    assignDeviceToState: (state, device) => {
+        console.log('Assign', device);
         // check to see if device is in devices
         // if already in list, warn
-        // else add device to list
+        // else assign device to list
     },
     updateDeviceInState: (state, id) => {
         console.log('Update', id);
@@ -36,14 +36,14 @@ const mutations = {
         // if already in list, update
         // else error
     },
-    removeDeviceFromState: (state, id) => {
+    unassignDeviceFromState: (state, id) => {
         state.devices = state.devices.filter(device => device.id !== id);
     }
 };
 
 const actions = {
-    removeDevice: ({ commit }, id) => {
-        commit('removeDeviceFromState', id);
+    unassignDevice: ({ commit }, id) => {
+        commit('unassignDeviceFromState', id);
     }
 };
 
