@@ -6,7 +6,7 @@
                 <div class="right floated content">
                     <button
                         class="ui mini negative button"
-                        @click="onInitiateDeviceRemoval(device.id)">Remove</button>
+                        @click="onInitiateDeviceUnassignment(device.id)">Unassign</button>
                 </div>
                 <div class="content">
                     <a class="header">{{ `${device.name} (${device.id})` }}</a>
@@ -14,20 +14,20 @@
                 </div>
             </div>
         </div>
-        <div id="remove-confirmation-modal" class="ui mini modal">
+        <div id="unassign-confirmation-modal" class="ui mini modal">
             <div class="ui header">
-                Remove Device?
+                Unassign Device?
             </div>
             <div class="content">
-                <p>Are you sure you want to remove this device from your device list?</p>
+                <p>Are you sure you want to unassign this device from a relay channel?</p>
             </div>
             <div class="actions">
                 <button
                     class="ui basic cancel button"
-                    @click="onDenyRemoval">Cancel</button>
+                    @click="onDenyUnassignment">Cancel</button>
                 <button
                     class="ui red approve button"
-                    @click="onConfirmRemoval">Remove</button>
+                    @click="onConfirmUnassignment">Unassign</button>
             </div>
         </div>
     </div>
@@ -37,8 +37,8 @@
 import { mapActions, mapGetters } from 'vuex';
 import $ from 'jquery';
 
-const REMOVE_MODAL_ID = '#remove-confirmation-modal';
-const REMOVE_ID_ATTR = 'data-device-id';
+const UNASSIGN_MODAL_ID = '#unassign-confirmation-modal';
+const UNASSIGN_ID_ATTR = 'data-device-id';
 
 export default {
     name: 'Devices',
@@ -46,18 +46,18 @@ export default {
         ...mapGetters(['allDevices'])
     },
     methods: {
-        ...mapActions(['removeDevice']),
-        removeDeviceID: function () { return $(REMOVE_MODAL_ID).attr(REMOVE_ID_ATTR); },
-        setRemoveDeviceID: function (value) { $(REMOVE_MODAL_ID).attr(REMOVE_ID_ATTR, value); },
-        onInitiateDeviceRemoval: function (id) {
-            this.setRemoveDeviceID(id);
-            window.$('#remove-confirmation-modal').modal('show');
+        ...mapActions(['unassignDevice']),
+        unassignDeviceID: function () { return $(UNASSIGN_MODAL_ID).attr(UNASSIGN_ID_ATTR); },
+        setUnassignDeviceID: function (value) { $(UNASSIGN_MODAL_ID).attr(UNASSIGN_ID_ATTR, value); },
+        onInitiateDeviceUnassignment: function (id) {
+            this.setUnassignDeviceID(id);
+            window.$('#unassign-confirmation-modal').modal('show');
         },
-        onConfirmRemoval: function () {
-            this.removeDevice(this.removeDeviceID());
-            this.setRemoveDeviceID(null);
+        onConfirmUnassignment: function () {
+            this.unassignDevice(this.unassignDeviceID());
+            this.setUnassignDeviceID(null);
         },
-        onDenyRemoval: function () { this.setRemoveDeviceID(null); }
+        onDenyUnassignment: function () { this.setUnassignDeviceID(null); }
     }
 }
 </script>

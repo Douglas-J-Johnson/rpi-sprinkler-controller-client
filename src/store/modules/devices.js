@@ -43,7 +43,6 @@ const mutations = {
 
 const actions = {
     removeDevice: ({ commit }, id) => {
-        console.log('REMOVE', id);
         commit('removeDeviceFromState', id);
     }
 };
