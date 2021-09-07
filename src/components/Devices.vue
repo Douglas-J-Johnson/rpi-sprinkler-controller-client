@@ -1,15 +1,31 @@
 <template>
     <div id="devices" class="page">
     <h3>Devices</h3>
-        <div class="ui middle aligned divided list">
+        <div class="ui divided list">
             <div v-for="device in allDevices" :key="device.channel" class="item">
                 <div class="left floated content">
-                    <button class="circular ui icon button">{{ device.channel }}</button>
-                </div>
-                <div v-if="device.assigned" class="right floated content">
                     <button
-                        class="ui mini negative button"
-                        @click="onInitiateDeviceUnassignment(device.channel)">Unassign</button>
+                        class="circular ui icon button"
+                        :class="{
+                            disabled: !device.assigned,
+                            basic: !device.assigned,
+                            green: deviceOn(device),
+                            grey: !deviceOn(device)
+                        }">
+                        {{ device.channel }}
+                    </button>
+                </div>
+                <div class="right floated content">
+                    <button v-if="device.assigned"
+                        class="ui mini primary button"
+                        @click="onInitiateDeviceUnassignment(device.channel)">
+                        Unassign
+                    </button>
+                    <button v-else
+                        class="ui mini primary button"
+                        @click="onInitiateDeviceAssignment(device.channel)">
+                        Assign
+                    </button>
                 </div>
                 <div class="content">
                     <a class="header">{{ device.name }}</a>
@@ -29,7 +45,7 @@
                     class="ui basic cancel button"
                     @click="onDenyUnassignment">Cancel</button>
                 <button
-                    class="ui red approve button"
+                    class="ui primary approve button"
                     @click="onConfirmUnassignment">Unassign</button>
             </div>
         </div>
@@ -41,7 +57,7 @@ import { mapActions, mapGetters } from 'vuex';
 import $ from 'jquery';
 
 const UNASSIGN_MODAL_ID = '#unassign-confirmation-modal';
-const UNASSIGN_ID_ATTR = 'data-device-channel';
+const UNASSIGN_CHANNEL_ATTR = 'data-device-channel';
 
 export default {
     name: 'Devices',
@@ -49,18 +65,27 @@ export default {
         ...mapGetters(['allDevices'])
     },
     methods: {
-        ...mapActions(['unassignDevice']),
-        unassignDeviceID: function () { return $(UNASSIGN_MODAL_ID).attr(UNASSIGN_ID_ATTR); },
-        setUnassignDeviceID: function (value) { $(UNASSIGN_MODAL_ID).attr(UNASSIGN_ID_ATTR, value); },
+        ...mapActions(['assignDevice', 'unassignDevice']),
+        deviceOn: function (device) {
+            return device.state === 1 ? true : false;
+        },
+        unassignDeviceChannel: function () { return $(UNASSIGN_MODAL_ID).attr(UNASSIGN_CHANNEL_ATTR); },
+        setUnassignDeviceChannel: function (value) { $(UNASSIGN_MODAL_ID).attr(UNASSIGN_CHANNEL_ATTR, value); },
+        onEditDevice: function (channel) {
+            console.log(`Edit Device ${channel}`);
+        },
+        onInitiateDeviceAssignment: function (channel) {
+            this.assignDevice(channel);
+        },
         onInitiateDeviceUnassignment: function (channel) {
-            this.setUnassignDeviceID(channel);
+            this.setUnassignDeviceChannel(channel);
             window.$('#unassign-confirmation-modal').modal('show');
         },
         onConfirmUnassignment: function () {
-            this.unassignDevice(this.unassignDeviceID());
-            this.setUnassignDeviceID(null);
+            this.unassignDevice(this.unassignDeviceChannel());
+            this.setUnassignDeviceChannel(null);
         },
-        onDenyUnassignment: function () { this.setUnassignDeviceID(null); }
+        onDenyUnassignment: function () { this.setUnassignDeviceChannel(null); }
     }
 }
 </script>
