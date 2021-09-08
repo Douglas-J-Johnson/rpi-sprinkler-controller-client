@@ -4,26 +4,26 @@
         <div class="ui divided list">
             <div v-for="device in allDevices" :key="device.channel" class="item">
                 <div class="left floated content">
-                    <button
+                    <button v-if="device.assigned"
                         class="circular ui icon button"
-                        :class="{
-                            disabled: !device.assigned,
-                            basic: !device.assigned,
-                            green: deviceOn(device),
-                            grey: !deviceOn(device)
-                        }">
+                        :class="{ green: deviceOn(device), grey: !deviceOn(device) }"
+                        @click="onToggleDeviceState(device.channel, device.state)">
+                        {{ device.channel }}
+                    </button>
+                    <button v-else
+                        class="circular disabled basic ui icon button">
                         {{ device.channel }}
                     </button>
                 </div>
                 <div class="right floated content">
                     <button v-if="device.assigned"
                         class="ui mini primary button"
-                        @click="onInitiateDeviceUnassignment(device.channel)">
+                        @click="onUnassignDevice(device.channel)">
                         Unassign
                     </button>
                     <button v-else
                         class="ui mini primary button"
-                        @click="onInitiateDeviceAssignment(device.channel)">
+                        @click="onAssignDevice(device.channel)">
                         Assign
                     </button>
                 </div>
@@ -65,7 +65,11 @@ export default {
         ...mapGetters(['allDevices'])
     },
     methods: {
-        ...mapActions(['assignDevice', 'unassignDevice']),
+        ...mapActions([
+            'assignDevice',
+            'setDeviceState',
+            'unassignDevice'
+        ]),
         deviceOn: function (device) {
             return device.state === 1 ? true : false;
         },
@@ -74,10 +78,15 @@ export default {
         onEditDevice: function (channel) {
             console.log(`Edit Device ${channel}`);
         },
-        onInitiateDeviceAssignment: function (channel) {
+        onAssignDevice: function (channel) {
             this.assignDevice(channel);
         },
-        onInitiateDeviceUnassignment: function (channel) {
+        onToggleDeviceState: function (channel, currentState) {
+            let state = 0;
+            if (currentState === 0) { state = 1; }
+            this.setDeviceState({ channel, state });
+        },
+        onUnassignDevice: function (channel) {
             this.setUnassignDeviceChannel(channel);
             window.$('#unassign-confirmation-modal').modal('show');
         },

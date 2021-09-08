@@ -4,16 +4,18 @@ const state = {
         {channel: 'CH2', assigned: true, state: 0, name: 'Back Pump', type: 'pump'},
         {channel: 'CH3', assigned: true, state: 0, name: 'Zone 1', type: 'valve'},
         {channel: 'CH4', assigned: true, state: 0, name: 'Zone 2', type: 'valve'},
-        {channel: 'CH5', assigned: true, state: 0, name: 'Zone 3', type: 'valve'},
-        {channel: 'CH6', assigned: true, state: 0, name: 'Zone 4', type: 'valve'},
-        {channel: 'CH7', assigned: true, state: 0, name: 'Zone 5', type: 'valve'},
-        {channel: 'CH8', assigned: true, state: 0, name: 'Zone 6', type: 'valve'},
+        {channel: 'CH5', assigned: true, state: 1, name: 'Zone 3', type: 'valve'},
+        {channel: 'CH6', assigned: true, state: 1, name: 'Zone 4', type: 'valve'},
+        {channel: 'CH7', assigned: true, state: 1, name: 'Zone 5', type: 'valve'},
+        {channel: 'CH8', assigned: true, state: 1, name: 'Zone 6', type: 'valve'},
     ] 
 };
 
 const getters = {
     allDevices: (state) => { return state.devices; },
     channelStates: ((state) => {
+        console.log("HERE");
+
         state.devices.forEach(device => {
             console.log(device.channel, device.state);
         });
@@ -21,11 +23,20 @@ const getters = {
 };
 
 const mutations = {
-    updateDeviceInfoInState: (state, channel) => {
-        console.log('Update', channel);
-        // check to see if device is in devices
-        // if already in list, update
-        // else error
+    updateDeviceInfoInState: (state, update) => {
+        let channel = update.channel;
+
+        state.devices = state.devices.map((device) => {
+            if (device.channel === channel) {
+                Object.keys(update).forEach(key => {
+                    if (key !== 'channel') {
+                        device[key] = update[key];
+                    }
+                })
+            }
+
+            return device;
+        });
     },
     assignDeviceInState: (state, channel) => {
         state.devices = state.devices.map((device) => {
@@ -57,6 +68,11 @@ const actions = {
     },
     unassignDevice: ({ commit }, channel) => {
         commit('unassignDeviceInState', channel);
+    },
+    setDeviceState: ({ commit }, update) => {
+        // Check actual device state
+        // Send device states to server
+        commit('updateDeviceInfoInState', update);
     }
 };
 
