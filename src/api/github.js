@@ -9,7 +9,7 @@ const OAUTH_CODE_QUERY_PARAMS = {
 const OAUTH_CODE_URL = `${config.github.baseURL}/authorize?${qs.stringify(OAUTH_CODE_QUERY_PARAMS)}`;
 
 export default {
-    getOauthCode() { window.location = OAUTH_CODE_URL; },
+    getOauthCode() { window.location = OAUTH_CODE_URL; }//,
     // getOauthToken () {
     //     let OAUTH_TOKEN_QUERY_PARAMS = {
     //         client_id: config.github.clientID,
