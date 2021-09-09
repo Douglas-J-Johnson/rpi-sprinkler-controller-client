@@ -70,17 +70,13 @@ export default {
             'setDeviceState',
             'unassignDevice'
         ]),
-        deviceOn: function (device) {
-            return device.state === 1 ? true : false;
-        },
+        deviceOn: function (device) { return device.state === 1 ? true : false; },
         unassignDeviceChannel: function () { return $(UNASSIGN_MODAL_ID).attr(UNASSIGN_CHANNEL_ATTR); },
         setUnassignDeviceChannel: function (value) { $(UNASSIGN_MODAL_ID).attr(UNASSIGN_CHANNEL_ATTR, value); },
         onEditDevice: function (channel) {
             console.log(`Edit Device ${channel}`);
         },
-        onAssignDevice: function (channel) {
-            this.assignDevice(channel);
-        },
+        onAssignDevice: function (channel) { this.assignDevice(channel); },
         onToggleDeviceState: function (channel, currentState) {
             let state = 0;
             if (currentState === 0) { state = 1; }
