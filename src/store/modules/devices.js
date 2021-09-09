@@ -4,10 +4,10 @@ const state = {
         {channel: 'CH2', assigned: true, state: 0, name: 'Back Pump', type: 'pump'},
         {channel: 'CH3', assigned: true, state: 0, name: 'Zone 1', type: 'valve'},
         {channel: 'CH4', assigned: true, state: 0, name: 'Zone 2', type: 'valve'},
-        {channel: 'CH5', assigned: true, state: 1, name: 'Zone 3', type: 'valve'},
-        {channel: 'CH6', assigned: true, state: 1, name: 'Zone 4', type: 'valve'},
-        {channel: 'CH7', assigned: true, state: 1, name: 'Zone 5', type: 'valve'},
-        {channel: 'CH8', assigned: true, state: 1, name: 'Zone 6', type: 'valve'},
+        {channel: 'CH5', assigned: true, state: 0, name: 'Zone 3', type: 'valve'},
+        {channel: 'CH6', assigned: true, state: 0, name: 'Zone 4', type: 'valve'},
+        {channel: 'CH7', assigned: true, state: 0, name: 'Zone 5', type: 'valve'},
+        {channel: 'CH8', assigned: true, state: 0, name: 'Zone 6', type: 'valve'},
     ] 
 };
 
@@ -53,7 +53,7 @@ const mutations = {
             if (device.channel === channel) {
                 device.assigned = false;
                 device.state = 0;
-                device.name = '';
+                device.name = '<UNASSIGNED>';
                 device.type = '';
             }
 
