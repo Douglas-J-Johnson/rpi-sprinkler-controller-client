@@ -1,3 +1,5 @@
+import deviceControllerAPI from "../../api/deviceController";
+
 const state = {
     devices: [
         {channel: 'CH1', assigned: true, state: 0, name: 'Front Pump', type: 'pump'},
@@ -12,14 +14,14 @@ const state = {
 };
 
 const getters = {
-    allDevices: (state) => { return state.devices; },
-    channelStates: ((state) => {
-        console.log("HERE");
+    allDevices: function (state) { return state.devices; },
+    channelStates: function (state) {
+        let states = {};
 
-        state.devices.forEach(device => {
-            console.log(device.channel, device.state);
-        });
-    })
+        state.devices.forEach(device => { states[device.channel] = device.state; });
+
+        return states;
+    }
 };
 
 const mutations = {
@@ -29,9 +31,7 @@ const mutations = {
         state.devices = state.devices.map((device) => {
             if (device.channel === channel) {
                 Object.keys(update).forEach(key => {
-                    if (key !== 'channel') {
-                        device[key] = update[key];
-                    }
+                    if (key !== 'channel') { device[key] = update[key]; }
                 })
             }
 
@@ -63,16 +63,13 @@ const mutations = {
 };
 
 const actions = {
-    assignDevice: ({ commit }, channel) => {
-        commit('assignDeviceInState', channel);
-    },
-    unassignDevice: ({ commit }, channel) => {
-        commit('unassignDeviceInState', channel);
-    },
-    setDeviceState: ({ commit }, update) => {
-        // Check actual device state
-        // Send device states to server
+    assignDevice: ({ commit }, channel) => { commit('assignDeviceInState', channel); },
+    unassignDevice: ({ commit }, channel) => { commit('unassignDeviceInState', channel); },
+    setDeviceState: ({ commit, getters }, update) => {
         commit('updateDeviceInfoInState', update);
+        deviceControllerAPI.postDeviceStates(getters.channelStates);
+        deviceControllerAPI.getDeviceStates();
+        // Check actual device state
     }
 };
 
