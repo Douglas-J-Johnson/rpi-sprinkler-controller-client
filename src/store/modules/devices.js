@@ -43,6 +43,8 @@ const mutations = {
             if (device.channel === channel) {
                 device.assigned = true;
                 device.state = 0;
+                device.name = '';
+                device.type = '';
             }
 
             return device;
